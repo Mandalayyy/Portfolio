@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+
+const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -43,6 +45,14 @@ const nextConfig = {
 
     return config;
   },
+
+  basePath: isProd ? '/Portfolio' : '', 
+  assetPrefix: isProd ? '/Portfolio' : '',
+  output: 'export',
+  distDir: 'dist',
+  images: {
+      unoptimized: true,
+    },
 };
 
 export default nextConfig;
